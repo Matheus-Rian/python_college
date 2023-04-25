@@ -1,0 +1,20 @@
+# 1 - Quadrante
+vetor = []
+
+# 2 - Quadrante
+vetor.append(idade)
+
+# 3 - Quadrante
+soma = sum(vetor)
+
+# 4 - Quadrante
+if (i > media):
+
+# 5 - Quadrante
+if (i < 25):
+
+# 6 - Quadrante
+quant_media
+
+# 7 - Quadrante
+print(vetor.sort())
