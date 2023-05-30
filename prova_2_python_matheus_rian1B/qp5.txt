@@ -1,0 +1,5 @@
+1. Na linha 3 deveria ser "classe.txt", não "classe.csv"
+2. Na linha 6 não deveria usar o .strip(), porque ele vai tirar os espaços em branco
+3. Na linha 7 deveria ser or, não and.
+4. Na linha 11 deveria ser aluno_numero == numero, não aluno_numero == nome
+5. O arquivo "classe.txt" não está sendo fechado
