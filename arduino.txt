@@ -1,0 +1,19 @@
+const int portaBomba = 7;
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(portaBomba, OUTPUT);
+}
+
+void loop() {
+  int valorUmidade = analogRead(A0);
+
+  while (valorUmidade > 400) {
+    digitalWrite(portaBomba, HIGH);
+    Serial.println(valorUmidade);
+  }
+
+  Serial.println(analogValue);
+  delay(1000);
+  digitalWrite(portaBomba, LOW);
+}
