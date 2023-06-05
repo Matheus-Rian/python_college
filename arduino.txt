@@ -1,19 +1,38 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x3F,16,2);
+
 const int portaBomba = 7;
 
 void setup() {
   Serial.begin(9600);
   pinMode(portaBomba, OUTPUT);
+
+  lcd.init();
 }
 
 void loop() {
   int valorUmidade = analogRead(A0);
+  Serial.println(valorUmidade);
 
-  while (valorUmidade > 400) {
+  lcd.setBacklight(HIGH);
+  lcd.setCursor(0,0);
+  lcd.clear();
+  lcd.print("Umidade ");
+  lcd.print(valorUmidade);
+
+  if (valorUmidade > 700) {
     digitalWrite(portaBomba, HIGH);
-    Serial.println(valorUmidade);
+
+    lcd.setCursor(0,1);
+    lcd.print("Regando a planta...");
+  } else {
+    digitalWrite(portaBomba, LOW);
+
+    lcd.setCursor(0,1);
+    lcd.print("Planta Regada!!");
   }
 
-  Serial.println(analogValue);
   delay(1000);
-  digitalWrite(portaBomba, LOW);
 }
