@@ -4,17 +4,25 @@
 LiquidCrystal_I2C lcd(0x3F,16,2);
 
 const int portaBomba = 7;
+// const int ledVermelho = 5;
+// const int ledAmarela = 10;
+// const int ledVerde = 12;
 
 void setup() {
   Serial.begin(9600);
   pinMode(portaBomba, OUTPUT);
-
+  // pinMode(ledVermelho, INPUT);
   lcd.init();
 }
 
 void loop() {
+  
   int valorUmidade = analogRead(A0);
   Serial.println(valorUmidade);
+
+  // digitalWrite(ledVermelho, LOW);
+  // digitalWrite(ledVerde, LOW);
+  // digitalWrite(ledAmarela, LOW);
 
   lcd.setBacklight(HIGH);
   lcd.setCursor(0,0);
@@ -22,17 +30,24 @@ void loop() {
   lcd.print("Umidade ");
   lcd.print(valorUmidade);
 
-  if (valorUmidade > 700) {
+  if (valorUmidade > 900) {
+    digitalWrite(portaBomba, LOW);
+
+    printarMensagemLCD("Coloque o sensor");
+  } else if (valorUmidade > 700) {
     digitalWrite(portaBomba, HIGH);
 
-    lcd.setCursor(0,1);
-    lcd.print("Regando a planta...");
+    printarMensagemLCD("Regando a planta...");
   } else {
     digitalWrite(portaBomba, LOW);
 
-    lcd.setCursor(0,1);
-    lcd.print("Planta Regada!!");
+    printarMensagemLCD("Planta Regada!!");
   }
 
   delay(1000);
+}
+
+void printarMensagemLCD(String mensagem) {
+  lcd.setCursor(0,1);
+  lcd.print(mensagem);
 }
